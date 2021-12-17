@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+	<style type="text/css" media="screen">
+		body {
+			color: black;
+			background-color: white;
+			background-image: url('https://vivrelibredotblog.files.wordpress.com/2018/01/le-fond-et-la-forme.png');
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover
+		}
+		#form {
+			text-align: center;
+			background-color: #ECE2E0;
+			display: block;
+			width: 30%;
+			height: 20%;
+			margin-top: 5%%;
+			padding: 10px;
+			border: solid;
+
+
+		}
+		h1 {
+			font-size: 300%;
+			color: ;
+			text-align: bold;
+        }
+		.mini{
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+		.ligne {
+            width: 200px;
+            padding: 10px;
+            margin-left:100px;
+
+			/*fadurait faire du responsive ici parceque c moche */		
+		}
+		.container-fluid{
+            text-align: center;
+            background-color: #ECE2E0;
+            border: solid;
+            
+            bottom:0;
+        }
+		  a {
+            text-decoration: none;
+        }
+        
+	</style>
+	<div class="container" id="form">
+		<h1>S'inscrire</h1>
+		<div class="mini"> 
+            {{ form_start(registrationForm) }}
+            <div class="ligne"> 
+                {{ form_row(registrationForm.email) }}
+            </div >
+	        <div class="ligne">
+                {{ form_row(registrationForm.plainPassword, {
+                 label: 'Mot De Passe :'}) }}
+            </div>
+	        
+			<div class="ligne">  
+                {{ form_row(registrationForm.nom) }}
+            </div>
+			<div class="ligne">  
+                {{ form_row(registrationForm.prenom) }}
+            </div>
+			<div class="ligne">  
+                {{ form_row(registrationForm.description) }}
+            </div>
+			<div class="ligne">  
+                {{ form_row(registrationForm.imageFile) }}
+            </div>
+			<div class="ligne">  
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+	        <button type="submit" class="btn btn-primary">Confirmer</button> 
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+	</div>
+    <div class="container-fluid">
+    <footer>
+         <div>
+         <a href="#" class="link-dark">Mention légales</a>
+         <p>Rencontre des tas d'étudiants comme vous !!
+        © 2021 R3ncontriL. Tous droits réservés.</p>
+         </div>
+    </footer>
+{% endblock %}

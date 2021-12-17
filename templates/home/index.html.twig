@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    body {
+			color: black;
+			background-color: white;
+			background-image: url('https://vivrelibredotblog.files.wordpress.com/2018/01/le-fond-et-la-forme.png');
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover
+		}
+     #bas{
+            text-align: center;
+            background-color: #ECE2E0;
+            border: solid;
+           
+            bottom:0;
+        }
+        a {
+            text-decoration: none;
+        }
+    #corps{
+            background-color: #ECE2E0;
+            text-align: center;
+            width:50% ;
+            height: 80;
+    } 
+    #card{
+      border: solid;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" >R3ncontriL</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/profil">Voir mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/messagerie">Mes Messages</a>
+        </li>
+        {% if app.user %}
+        <li>
+         {% if app.user %}
+					<a class="nav-link active" href="{{ path('app_logout') }}">Se deconnecter</a>
+				</div>
+			{% endif %}
+        </li>
+        {% endif %}
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Chercher un profil" aria-label="Search">
+        <button class="btn  btn-warning"  type="submit">Rechercher</button>
+        
+      </form>
+    </div>
+  </div>
+</nav>
+{% for publication in publications %}
+<div class="card" style="width: 18rem;">
+  <img src="{{ vich_uploader_asset(publication, 'imageFile') }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text" >{{publication.description}}</p>
+    <hr>
+    <h4>Dernier commentaire</h4>
+    <a href={{ path('commentaire_index', {'publication_id': publication.id}) }} class="btn btn-primary">Voir les commentaires</a>
+  </div>
+</div>
+{% endfor %}
+
+<section class="Salut">
+</section>
+<div class="container-fluid" id="bas">
+    <footer>
+         <div>
+         <a href="#" class="link-dark">Mention légales</a>
+         <p>Rencontre des tas d'étudiants comme vous !!
+         © 2021 R3ncontriL. Tous droits réservés.</p>
+         
+        </div>
+    </footer>
+    </div>
+
+{% endblock %}

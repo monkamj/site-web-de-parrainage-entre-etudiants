@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter
+{% endblock %}
+
+{% block body %}
+	<style>
+        h1{
+            font-weight: bold;
+            font-size: 300%;
+			color: ;	
+        }
+		body {           
+			color: black;
+			background-color: white;
+			background-image: url('https://vivrelibredotblog.files.wordpress.com/2018/01/le-fond-et-la-forme.png');
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover
+		}
+        form {
+           
+			text-align: center;
+			background-color: #ECE2E0;
+			display: block;
+			width: 30%;
+			height: 20%;
+			margin-top: 10%;
+			padding: 15px;
+			border: solid;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 110%;
+        }
+        .container{
+            text-align: center;
+        }
+        .ligne{
+           padding: 5px;
+        }
+
+        .container-fluid{
+            text-align: center;
+            background-color: #ECE2E0;
+            border: solid;
+            position:absolute;
+            bottom:0;
+        }
+        a {
+            text-decoration: none;
+        }
+        
+		
+	</style>
+	<div class="container">
+		<form method="post">
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+
+			{% if app.user %}
+				<div class="mb-3 ">
+					Tu es connecté avec l'adresse mail : {{ app.user.email }},
+					<a href="{{ path('app_logout') }}">Se deconnecter</a>
+				</div>
+			{% endif %}
+            <div>
+			    <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+            </div>
+            <div class="ligne">
+			    <label for="inputEmail">Email :</label>
+            </div>
+            <div class="ligne">
+			    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+			    <label for="inputPassword">Mot de passe :</label>
+            <div class="ligne">
+			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<div>
+
+
+				{#
+				        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+				        See https://symfony.com/doc/current/security/remember_me.html#}
+				
+				        <div class="checkbox mb-3">
+				            <label>
+				                <input type="checkbox" name="_remember_me">Rester connecté ?
+				            </label>
+				        </div>
+				    
+
+				<button class="btn btn-lg btn-primary" type="submit">
+					Se connecter
+				</button>
+            </div>
+            <div class="ligne">
+		        <a  class="dark-link" href="/register" style="font-style: italic">Vous n'êtes pas déja inscrit ?</label>
+            </div> 
+			</form>
+		
+	</div>
+    <div class="container-fluid">
+    <footer>
+         <div>
+         <a href="#" class="link-dark">Mention légales</a>
+         <p>Rencontre des tas d'étudiants comme vous !!
+         © 2021 R3ncontriL. Tous droits réservés.</p>
+         
+         </div>
+    </footer>
+{% endblock %}

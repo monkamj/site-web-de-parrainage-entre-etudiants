@@ -1,0 +1,164 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes messages{% endblock %}
+
+{% block body %}
+<style>
+    body {
+			color: black;
+			background-color: white;
+			background-image: url('https://vivrelibredotblog.files.wordpress.com/2018/01/le-fond-et-la-forme.png');
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-size: cover
+		}
+     #bas{
+            text-align: center;
+            background-color: #ECE2E0;
+            border: solid;
+            position:absolute;
+            bottom:0;
+        }
+        a {
+            text-decoration: none;
+        }
+    #corps{
+            background-color: #ECE2E0;
+            text-align: center;
+            width:50% ;
+            height: 80;
+    } 
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" >R3ncontriL</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/profil">Voir mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/messagerie">Mes Messages</a>
+        </li>
+        <li>
+        {% if app.user %}
+					<a class="nav-link active" href="{{ path('app_logout') }}">Se deconnecter</a>
+				</div>
+			{% endif %}
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Chercher un profil" aria-label="Search">
+        <button class="btn  btn-warning"  type="submit">Rechercher</button>
+        
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+{# 
+<div class="col 12 my-1">
+   <div class="p-2" id="discussion">
+   </div>
+</div>
+<div class="col-12 saisie">
+    <div class="input-group">
+        <input type="text" class="form-control" id="texte" placeholder="Entrez votre texte">
+        <div class="input-group-append">
+            <span class="input-group-text" id="valid"><i class="la la-check"></i></span>
+        </div>
+    </div>
+</div>  #}   
+        
+<div class="container" id="corps">
+<span>nobody</div>
+</div>
+
+
+<div class="container-fluid" id="bas">
+    <footer>
+         <div>
+         <a href="#" class="link-dark">Mention légales</a>
+         <p>Rencontre des tas d'étudiants comme vous !!
+         © 2021 R3ncontriL. Tous droits réservés.</p>
+         
+        </div>
+    </footer>
+    </div>
+
+    <script>
+    //On attends le chargement de la page 
+    {# window.onload=()=>{
+        //On va chercher la zone texte
+        let texte =document.querySelector("#texte");
+        texte.addEventListener("keyup",verifEntree)
+        //On va chercher le bouton valid
+         let valid =document.querySelector("#texte");
+         valid.addEventListener("click", ajoutMessage)
+    }
+    //Verifie si on a ppuie sur lla touche entrée
+    function verifEntree(e){
+          if(e.key == "Enter"){
+              ajoutMessage();
+          }
+    }
+    //Cette fonctio envoie le message en ajax à un 
+   function ajoutMessage() {
+    // On récupère la valeur dans le champ "texte"
+    let message = document.querySelector("#texte").value
+
+    // On vérifie si on a un message
+    if (message != "") {
+        // On crée un objet JS pour le message
+        let donnees = {}
+        donnees["message"] = message
+
+        // On convertit les données en json
+        let donneesJson = JSON.stringify(donnees)
+
+        // On envoie les données en POST en Ajax
+        // On instancie XMLHttpRequest
+        let xmlhttp = new XMLHttpRequest()
+
+        // On gère la réponse
+        xmlhttp.onreadystatechange = function(){
+            if (this.readyState == 4) {
+                if(this.status == 200) {
+                    // On a une réponse
+                    // On efface le champ texte
+                    document.querySelector("#texte").value = ""
+                    console.log("salut");
+                }else{
+                    // On reçoit une erreur, on l'affiche
+
+                    // let reponse = JSON.parse(this.response)
+                    //alert(reponse.message)
+                }
+            }
+        }
+
+        // On ouvre la requête
+        xmlhttp.open("POST", "#");
+
+        // On envoie la requête avec les données
+        xmlhttp.send(donneesJson);
+    }
+}
+
+    
+     </script>
+   #}
+    
+    
+
+{% endblock %}

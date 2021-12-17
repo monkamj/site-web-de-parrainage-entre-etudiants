@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block body %}
+    <h1>Commentaire index</h1>
+    <div class="card" style="width: 18rem;">
+  <img src="{{ vich_uploader_asset(publication, 'imageFile') }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text" >{{publication.description}}</p>
+  </div>
+</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Datecreate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.description }}</td>
+                <td>{{ commentaire.datecreate }}</td>
+                <td>
+                    <a href="{{ path('commentaire_show', {'id': commentaire.id}) }}">show</a>
+                    <a href="{{ path('commentaire_edit', {'id': commentaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href={{ path('commentaire_new', {'publication_id': publication.id}) }}>Create new</a>
+{% endblock %}
